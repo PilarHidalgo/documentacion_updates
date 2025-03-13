@@ -1,0 +1,190 @@
+Ingeniería y Gestión del Conocimiento RDFProfesor 
+Andrés Melgar
+!1Agenda•Introducción.
+•Distribución de datos a través de la Web.
+•Fusión de datos de múltiples fuentes.
+•Namespace, URI e Identidad.
+•Identiﬁcadores en el namespace RDF .
+•RDF y datos tabulares.
+•Relaciones de mayor orden.
+•Alternativas para serialización.
+•Nodos en blanco.!2Texto guía
+!3 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Introducción•En la Web Semántica existen tres lenguajes que son esenciales para la representación de conceptos, estos son:
+•RDF (Resource Description Framework).
+•RDFS (RDF Schema).
+•OWL (Ontology Web Language)
+•RDF es el lenguaje base de la Web Semántica
+•RDF aborda la gestión de datos distribuidos.
+•Todos los demás estándares de la Web Semántica se basan en la gestión de datos distribuidos.!4 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Introducción•La Web a la que estamos acostumbrados está formado por una serie de documentos que se encuentran enlazados unos a otros.
+•Cualquier conexión entre el documentos y las cosas que en el se describen en realizada por la persona que lee el documento.
+•Por ejemplo, un documento sobre Shakespeare podría tener un enlace a un documento sobre Stratford-upon-Avon, ciudad de nacimiento de Shakespeare, pero no se tienen conceptos o entidades que describan a Shakespeare o  Stratford-upon-Avon. 
+!5 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Introducción•En la Web Semántica las cosas del mundo se describen a través de recursos.
+•Un recurso es cualquier cosa que las personas pueden hablar (por ejemplo: Shakespeare, Stratford, el valor de x, todas las vacas en Texas).
+•De hecho RDF (Resource Description Framework) básicamente es un Marco de Descripción de Recursos.
+!6 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Distribución de datos a través de la Web•Los datos a menudo se representan en forma de tabla, en los que cada ﬁla representa algún elemento que describimos, y cada columna representa alguna propiedad de esos elementos. 
+•Las celdas en la tabla son los valores particulares para esas propiedades. 
+!7 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Distribución de datos a través de la Web
+!8 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Distribución de datos a través de la Web•Se analizarán algunas estrategias para distribuir datos a través de la Web. En todas estas estrategias, una parte de los datos se representará en una computadora, mientras que la otra parte se representarán en otra.
+•E n la primera estratégia, cada máquina en red es responsable de mantener la información sobre una o más ﬁlas completas de la tabla. Cualquier consulta sobre una entidad puede ser respondida por la máquina que almacena su ﬁla correspondiente.
+!9 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Distribución de datos a través de la Web
+!10 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Distribución de datos a través de la Web•Esta estrategia de distribución proporciona una ﬂexibilidad considerable, ya que las máquinas pueden compartir la carga de representar información sobre varias personas. 
+•Pero debido a que es una representación distribuida de datos, requiere cierta coordinación entre los servidores. 
+•Cada servidor debe compartir información sobre las columnas. 
+•¿La segunda columna en un servidor corresponde a la misma información que la segunda columna en otro servidor? 
+•Este no es un problema insuperable, y, de hecho, es un problema fundamental de distribución de datos. 
+•Debe haber alguna coordinación acordada entre los servidores. En este ejemplo, los servidores deben poder, de forma global, indicar a qué propiedad corresponde cada columna.!11 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Distribución de datos a través de la Web•En la segunda estrategia, cada servidor es responsable de una o más columnas completas de la tabla original. 
+•Un servidor podría ser responsable de las fechas de publicación y el medio, y otro servidor podría ser responsable de los títulos. 
+•Esta estrategia permite que cada máquina sea responsable de un tipo de información. 
+•Si no estamos interesados en las fechas de publicación, no necesitamos considerar la información de ese servidor. 
+•Si queremos especiﬁcar algo nuevo sobre las entidades (por ejemplo, cuántas páginas es el manuscrito), podemos agregar un nuevo servidor con esa información sin interrumpir a los demás.!12 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Distribución de datos a través de la Web
+!13 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Distribución de datos a través de la Web•Al igual que en la estrategia anterior, se requiere cierta coordinación entre los servidores. 
+•En este caso, la coordinación tiene que ver con las identidades de las entidades que se describirán. 
+•¿Cómo sé que la ﬁla 3 en un servidor se reﬁere a la misma entidad que la ﬁla 3 en otro servidor? Esta solución requiere un identiﬁcador global para las entidades que se describen.!14 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Distribución de datos a través de la Web•Podría pensarse en una tercer estrategia como una combinación de las dos estrategias anteriores, en las cuales la información no se distribuye ﬁla por ﬁla ni columna por columna, sino que se distribuye celda por celda. 
+•Cada máquina es responsable de algunas celdas en la tabla. 
+•Este sistema combina la ﬂexibilidad de ambas estrategias anteriores. 
+•Dos servidores pueden compartir la descripción de una sola entidad y pueden compartir el uso de una propiedad particular.!15 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Distribución de datos a través de la Web•Esta ﬂexibilidad es necesaria si queremos que nuestro sistema de distribución de datos realmente respalde el lema de AAA (Anyone can say Anything about Any topic, “cualquiera puede decir cualquier cosa sobre cualquier tema”). 
+•Si tomamos en serio el lema de AAA, cualquier servidor necesita poder hacer una aﬁrmación sobre cualquier entidad (como en la segunda estrategia estrategia).
+•Pero también cualquier servidor necesita poder especiﬁcar cualquier propiedad de una entidad (como en la primera estrategia). 
+•La tercera estrategia tiene ambos beneﬁcios.!16 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Distribución de datos a través de la Web•Pero esta estrategia también combina los costos de las otras dos estrategias. 
+•Ahora no solo necesitamos una referencia global para los encabezados de las columnas, sino que también necesitamos una referencia global para las ﬁlas. 
+•De hecho, cada celda debe representarse con tres valores: 
+•una referencia global para la ﬁla, 
+•una referencia global para la columna y 
+•el valor en la propia celda. 
+•Esta tercera estrategia es la estrategia adoptada por RDF .!17 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Distribución de datos a través de la Web•Como una celda se representa con tres valores, el bloque de construcción básico para RDF se denomina tripla. 
+•El identiﬁcador de la ﬁla se llama el sujeto de la tripla.
+•El identiﬁcador para la columna se llama el predicado de la tripla. 
+•El valor en la celda se llama el objeto de la tripla.
+!18 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Distribución de datos a través de la Web
+!19 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Distribución de datos a través de la Web•Los triplas se vuelven más interesantes cuando más de una tripla se reﬁere a la misma entidad. 
+•Cuando más de una tripla se reﬁere a lo mismo, a veces es conveniente ver las triplas como un gráﬁco dirigido en el que cada tripla es un borde desde su sujeto hasta su objeto, con el predicado como la etiqueta en el borde.!20 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Distribución de datos a través de la Web
+!21 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Fusión de datos de múltiples fuentes•Se ha descrito a RDF como una forma de distribuir datos a través de varias fuentes. 
+•Pero cuando queremos usar esa información, se necesitará fusionar nuevamente estas fuentes. 
+•Un valor de la representación en forma de tripla es la facilidad con la que se puede lograr este tipo de fusión. 
+•Dado que la información se representa simplemente como triplas, la información fusionada de dos gráﬁcos es tan simple como formar el gráﬁco de todos los triples de cada gráﬁco individual, tomados en conjunto.!22 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Fusión de datos de múltiples fuentes
+!23 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Fusión de datos de múltiples fuentes
+!24 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Fusión de datos de múltiples fuentes
+!25 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Fusión de datos de múltiples fuentes
+!26 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Fusión de datos de múltiples fuentes
+!27 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Fusión de datos de múltiples fuentes
+!28 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Namespace, URI e Identidad•La esencia de la fusión se reduce a responder la pregunta ¿Cuándo un nodo en un gráﬁco es el mismo nodo que un nodo en otro gráﬁco? 
+•En RDF , este problema se resuelve mediante el uso de identiﬁcadores uniformes de recursos (URI).
+•En las ﬁguras hasta ahora, se ha etiquetado los nodos y bordes en los gráﬁcos con nombres simples como Shakespeare o Wales. En la Web Semántica, esto no es información suﬁciente para determinar si dos nodos son realmente iguales. 
+•RDF toma prestada su solución a este problema desde la tecnología Web. 
+•La sintaxis y el formato de un URI son familiares incluso para los usuarios ocasionales de la Web hoy en día debido al caso especial, pero típico, de la URL, por ejemplo, http://www.WorkingOntologist.org/Examples/Chapter3/Shakespeare#Shakespeare
+•Si dos agentes en la Web quieren referirse al mismo recurso, la práctica recomendada en la Web es que acepten un URI común para ese recurso.!29 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Namespace, URI e Identidad•Los URI y las URL se ven exactamente iguales y, de hecho, una URL es solo un caso especial del URI. 
+•¿Por qué la Web tiene ambas ideas? Simpliﬁcando un poco, el URI es un identiﬁcador con alcance global. 
+•Dos aplicaciones Web en el mundo pueden referirse a lo mismo al hacer referencia al mismo URI. 
+•Pero la sintaxis del URI hace posible "desreferenciarlo", es decir, utilizar toda la información en el URI (que especiﬁca cosas como el nombre del servidor, protocolo, número de puerto, nombre de archivo, etc.) para localizar un archivo (o una ubicación en un archivo) en la Web.
+•Esta desreferenciación tiene éxito si todas estas partes funcionan; el protocolo localiza el servidor especiﬁcado que se ejecuta en el puerto especiﬁcado y así sucesivamente. 
+•Cuando este es el caso, podemos decir que el URI no es solo un URI, sino que también es una URL. 
+•Desde el punto de vista del modelado, la distinción no es importante. Pero desde el punto de vista de tener un modelo en la Web Semántica, el hecho de que un URI pueda ser desreferenciado permite a los modelos participar en una infraestructura Web global.!30 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Namespace, URI e Identidad•RDF aplica la noción de URI para resolver el problema de identidad en la fusión de gráﬁcos. 
+•La aplicación es bastante simple: un nodo de un gráﬁco se fusiona con un nodo de otro gráﬁco, exactamente si tienen el mismo URI. 
+•Por un lado, esto puede parecer poco deshonesto, "resolver" el problema de la identidad del nodo basándose en otro estándar. 
+•Por otro lado, dado que los problemas de identidad aparecen en la Web en general y no solo en la Web Semántica, sería tonto no usar la misma estrategia para resolver el problema en ambos casos.!31 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Namespace, URI e Identidad•Expresando URIs en impresión •Los URI funcionan muy bien para expresar identidad en la World Wide Web, pero por lo general son un poco difíciles de escribir en detalle cuando se expresan modelos, especialmente impresos.
+•Entonces, para los ejemplos se usará una versión simpliﬁcada de un esquema de abreviatura de URI llamado qnames. 
+•En su forma más simple, un URI expresado como qname tiene dos partes: un espacio de nombres y un identiﬁcador, escritos con dos puntos entre ellos. 
+•La representación qname para el identiﬁcador Inglaterra en el geo del espacio de nombres es simplemente geo:Inglaterra. 
+•El estándar RDF/XML incluye reglas elaboradas que permiten a los programadores asignar espacios de nombres a otras representaciones de URI (como la familiar notación http://). !32 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Namespace, URI e Identidad•Expresando URIs en impresión •No hay ninguna limitación en el uso de múltiples espacios de nombres en una sola fuente de datos, o inclusive en un sola tripla. 
+•La selección de espacios de nombres no tiene restricciones en lo que respecta al modelo de datos y las normas. Sin embargo, es una práctica común referirse a los identiﬁcadores relacionados en un solo espacio de nombres.
+!33 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Namespace, URI e Identidad
+!34 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Namespace, URI e Identidad•Namespace estándar  • El uso del URI como estándar para identiﬁcadores globales permite una referencia mundial para cualquier símbolo. Esto signiﬁca que podemos decir cuándo dos personas en cualquier parte del mundo se están reﬁriendo a lo mismo.
+•Esta propiedad del URI proporciona una forma simple para que una organización estándar (como el W3C) especiﬁque el signiﬁcado de ciertos términos en el estándar. 
+•La W3C proporcionan deﬁniciones para términos como type, subClassOf, Class, inverseOf, etc. 
+•Estos estándares tienen la intención de aplicarse globalmente a través de la Web Semántica, por lo que los estándares se reﬁeren a estas palabras reservadas de la misma manera en que se reﬁeren a cualquier otro recurso en la Web Semántica, como URI.!35 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Namespace, URI e Identidad•Namespace estándar  •El W3C ha deﬁnido una cantidad de espacios de nombres estándar para su uso de tecnologías Web. Como por ejemplo:
+•xsd: para la deﬁnición de esquemas XML. 
+•xmlns: para espacios de nombres XML.
+!36 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Namespace, URI e Identidad•Namespace estándar  •La Web Semántica se maneja exactamente de la misma manera, con deﬁniciones de espacio de nombres para su capas principales.
+•rdf: indica los identiﬁcadores utilizados en RDF . El conjunto de identiﬁcadores deﬁnidos en el estándar es bastante pequeño y se usa para deﬁnir tipos y propiedades. El URI global para el espacio de nombres rdf es http://www.w3.org/1999/02/22-rdf-syntax-ns#.
+•rdfs: indica los identiﬁcadores utilizados para el lenguaje RDF Schema, RDFS. El alcance y la semántica de los símbolos en este espacio de nombres serán tratado en las próximas sesiones. El URI global para el espacio de nombres rdfs es http://www.w3.org/2000/01/rdf-schema#.
+•owl: indica los identiﬁcadores utilizados para el lenguaje de ontología web, OWL. El alcance y la semántica de los símbolos en este espacio de nombres serán tratado en las próximas sesiones. El URI global para el espacio de nombres del owl es http://www.w3.org/2002/07/owl#.!37 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Namespace, URI e Identidad•Namespace estándar  •La Web Semántica se maneja exactamente de la misma manera, con deﬁniciones de espacio de nombres para su capas principales.
+•rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#.
+•rdfs: http://www.w3.org/2000/01/rdf-schema#.
+•owl: http://www.w3.org/2002/07/owl#.
+•Estos URI proporcionan un buen ejemplo de la interacción entre un URI y una URL. 
+•Para propósitos de modelado, cualquier URI en uno de estos espacios de nombres (eg., http://www.w3.org/2000/01/rdf-schema#subClassOf, o rdfs: subClassOf para abreviar) se reﬁere a un término particular que el W3C hace algunas declaraciones sobre en el estándar RDFS. 
+•Pero el término también puede ser desreferenciado, es decir, si miramos el servidor www.w3.org, hay una página en la ubicación 2000/01/rdf-schema con una entrada sobre subClassOf, que brinda información adicional sobre este recurso. 
+•Desde el punto de vista del modelado, no es necesario que se pueda desreferenciar este URI, pero desde el punto de vista de la integración Web, es fundamental que lo sea.!38 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Identiﬁcadores en el namespace RDF•Con la introducción de espacios de nombres, RDF usa la infraestructura de la Web para representar acuerdos sobre cómo referirse a una entidad en particular. 
+•El estándar RDF se aprovecha de la infraestructura del espacio de nombres para deﬁnir un pequeño número de identiﬁcadores estándar en un espacio de nombres deﬁnido en el estándar, un espacio de nombre llamado rdf.
+!39 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Identiﬁcadores en el namespace RDF
+!40 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Identiﬁcadores en el namespace RDF•rdf:type es una propiedad que proporciona un sistema de tipeo elemental en RDF .
+•El sujeto de rdf:type en estas triplas puede ser cualquier identiﬁcador, y se entiende que el objeto es un tipo. 
+•No hay restricciones en el uso de rdf:type con tipos; los tipos pueden tener tipos ad inﬁnitum.
+!41 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Identiﬁcadores en el namespace RDF•rdf:Property es un identiﬁcador que se usa como un tipo en RDF para indicar cuándo se usará otro identiﬁcador como predicado en lugar de como sujeto o como objeto. 
+!42 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+RDF y datos tabulares
+!43 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+RDF y datos tabulares
+!44 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Relaciones de mayor orden•No es inusual que alguien que está construyendo un modelo en RDF por primera vez se sienta un poco limitado por la forma simple sujeto/predicado/objeto de la tripla RDF .
+•No quieren decir simplemente que Shakespeare escribió Hamlet, quieren caliﬁcar esta aﬁrmación y decir que Shakespeare escribió Hamlet en 1604 o que Wikipedia dice que Shakespeare escribió Hamlet en 1604.
+•En general, estos son casos en los que es, o al menos parece, deseable hacer una declaración sobre otra declaración. Este proceso se llama reiﬁcación.
+•En una tabla de base de datos relacional, es posible simplemente crear una tabla con más columnas para agregar información adicional sobre un triple. 
+•La declaración que Shakespeare escribió Hamlet se expresa en una sola ﬁla de una tabla, donde hay una columna para el autor de una obra y otra para su título. Cualquier información adicional sobre este evento se realiza con otra columna. 
+•Cuando esto se convierte a RDF , la ﬁla se representa con un número de triplas, una tripla por columna en la base de datos. El sujeto de todos estas triplas es el mismo: un solo recurso que corresponde a la ﬁla en la tabla.!45 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Relaciones de mayor orden•La declaración de Shakespeare Hamlet en 1601 se puede escribir el RDF de la siguiente manera:
+!46 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Relaciones de mayor orden•Este enfoque funciona bien para ejemplos como Shakespeare escribió Hamlet en 1601, en el que queremos expresar más información sobre algún evento o declaración. 
+•No funciona tan bien en casos como Wikipedia dice que Shakespeare escribió Hamlet, en el que estamos expresando información sobre la declaración en sí misma, Shakespeare escribió Hamlet. 
+•Este tipo de metadatos sobre declaraciones a menudo toma la forma de: 
+•procedencia (información sobre el origen de un enunciado, como en el ejemplo anterior).
+•probabilidad (expresada en alguna forma cuantitativa como por ejemplo: es 90 por ciento probable que Shakespeare haya escrito Hamlet). 
+•contexto (información especíﬁca sobre un entorno de proyecto en el que se cumple una aﬁrmación, como Kenneth Branagh interpretó a Hamlet en la película), o 
+•marco de tiempo (Hamlet se interpreta en Broadway del 11 de enero al 12 de marzo). 
+•En tales casos, es útil hacer una declaración explícita sobre un enunciado. Este proceso, llamado reiﬁcación explícita, es compatible con el estándar W3C RDF con tres recursos llamados rdf: subject, rdf: predicate y rdf: object.!47 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Relaciones de mayor orden
+!48 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Alternativas para serialización•N-triples
+•Turtle
+!49 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Alternativas para serialización•RDF/XML
+!50 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Nodos en blanco•Hasta el momento, se ha descrito cómo RDF permite representar conjuntos de triplas, en los que cada sujeto, predicado y objeto o es una recurso o un valor de datos literal. 
+•A cada recurso se le asigna una identidad de acuerdo con el estándar web de identidad, el URI. 
+•RDF también permite recursos que no tienen ninguna identidad Web en absoluto. Pero, ¿por qué queremos representar un recurso que no tiene identidad en la Web?
+•A veces sabemos que algo existe, e incluso sabemos algunas cosas al respecto, pero no sabemos su identidad. 
+•Por ejemplo, supongamos que queremos representar el hecho de que Shakespeare tenía una amante, cuya identidad permanece desconocida. Pero sabemos algunas cosas sobre ella; ella era una mujer, vivía en Inglaterra y fue la inspiración para "Sonnet 78".!51 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Nodos en blanco•RDF sin nodos en blanco
+•RDF con nodos en blanco
+!52 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.
+Nodos en blanco
+!53 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 3. RDF—The basis of the Semantic Web.

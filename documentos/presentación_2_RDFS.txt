@@ -1,0 +1,125 @@
+Ingeniería y Gestión del Conocimiento RDFSProfesor 
+Andrés Melgar
+!1Agenda•Introducción.
+•Lenguaje de Esquema.
+•Relación entre esquema y datos.
+•El lenguaje de esquema RDF .
+•Inferencia en RDF (subClassOf).
+!2Texto guía
+!3 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.
+Introducción•Así como el modelado de la Web Semántica en RDF se basa de grafos, el modelado de la Web Semántica en RDF Schema Language (RDFS) se basa en conjuntos.
+•Algunos aspectos de la pertenencia a conjuntos se pueden modelar en RDF , por ejemplo con la propiedad rdf:type. 
+•Pero RDF simplemente crea una estructura de grados para representar datos.
+• RDFS proporciona algunas pautas sobre cómo usar esta estructura de grados de una manera disciplinada.!4
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Introducción
+!5
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Introducción•RDFS proporciona una forma de hablar sobre el vocabulario que se utilizará en un grado RDF .
+•¿Qué individuos están relacionados entre sí, y cómo? 
+•¿Cómo se relacionan las propiedades que utilizamos para deﬁnir a nuestros individuos con otros conjuntos de individuos? 
+•RDFS proporciona una forma para que un modelador de información exprese las respuestas a este tipo de preguntas.
+•RDFS es como cualquier otro lenguaje de esquemas:
+•Provee información sobre la forma en que se describirán los datos.
+•Pero tienes diferencias substanciales frente a otras lenguajes de esquemas.!6
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Lenguaje de Esquema•RDFS es el lenguaje de esquema para RDF . Pero, ¿qué es un lenguaje de esquema en primer lugar?
+•Consideremos los sistemas de modelado de documentos como un ejemplo. 
+•Para dichos sistemas, un lenguaje de esquema le permite a uno expresar el conjunto de formatos permitidos para un documento. 
+•Para un esquema dado, es posible determinar (a menudo automáticamente) si un documento en particular se ajusta a ese esquema. 
+•Esta es la principal capacidad provista por las deﬁniciones de esquemas XML. Los analizadores XML pueden determinar automáticamente si un documento XML particular se ajusta a un esquema dado.!7
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Lenguaje de Esquema•Otros lenguajes de esquema ayudan a interpretar datos particulares. 
+•Por ejemplo, un esquema de base de datos proporciona información clave para las tablas en una base de datos relacional. 
+•No hay nada en la tabla que indique el signiﬁcado de la información en una columna en particular ni nada que indique qué columna se va a usar como índice para la tabla. 
+•Esta información se incluye en el esquema de la base de datos, pues no cambia de registro a registro.!8
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Lenguaje de Esquema•En el paradigma orientado a objetos, la estructura de clases juega un papel organizador para la información también. 
+•Pero en este caso, el diagrama de clases hace más que describir datos. 
+•Determina, de acuerdo con la política de herencia del lenguaje en particular, qué métodos están disponibles para una instancia particular y cómo se implementan.
+•Esto está en marcado contraste con las bases de datos relacionales y el XML, en el sentido de que no interpreta información, sino que proporciona una manera sistemática para que alguien describa la información y las transformaciones disponibles para esa información.!9
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Lenguaje de Esquema•La idea clave del esquema en RDF es que ayudas a dar signiﬁcado a los datos. 
+•Esto se logra especiﬁcando la semántica utilizando patrones de inferencia.
+!10
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Lenguaje de Esquema
+!11
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Relación entre esquema y datos•En la mayoría de los sistemas de modelado, existe una clara división entre los datos y su esquema. 
+•El esquema para una base de datos relacional normalmente no se expresa en una tabla en la base de datos.
+•El modelo de objetos de un sistema orientado a objetos no se expresa como objetos. 
+•Un DTD XML no es un documento XML válido.
+•Pero en muchos casos, las versiones modernas de tales sistemas modelan el esquema de la misma forma que los datos. 
+•El protocolo de meta-objetos de Common Lisp y la API de introspección de Java representan los modelos de objeto como objetos en sí mismos. 
+•La deﬁnición de hoja de estilo XML deﬁne estilos en un lenguaje XML.!12
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Relación entre esquema y datos•En el caso de RDF , el lenguaje de esquema se deﬁne en RDF.
+•Toda la información de esquemas en RDFS se deﬁne con triplas RDF . 
+•La relación entre los recursos en RDF y los recursos del esquema se realiza con triplas, al igual que las relaciones entre cualquier otro recurso.
+!13
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Lenguaje de Esquema
+!14
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Relación entre esquema y datos•En RDF, todo es expresado en tripletas.
+•El resultado de las aﬁrmaciones sobre triples es expresado en nuevas triples (inferencia).
+•Las estructuras que dirigen estas inferencias, son expresadas en triples.
+!15
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Relación entre esquema y datos•Esta elegancia de diseño hace que sea particularmente fácil proporcionar una descripción formal de la semántica de RDFS, simplemente proporcionando reglas de inferencia que funcionen sobre patrones de triplas.
+•La construcción básica para especiﬁcar un conjunto en RDFS se llama rdfs:Class. 
+•Como RDFS se expresa en RDF , la forma en que expresamos que algo es un conjunto es con una tripla, en particular, una tripla en el que el predicado es rdf:type, y el objeto es rdfs:Class. 
+!16
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Relación entre esquema y datos•¿Qué hay de nuevo en RDFS? 
+•En RDF se usa rdf:type para especiﬁcar que algo era miembro de un conjunto. 
+•¿Qué se obtiene al especiﬁcar explícitamente que algo es un conjunto?
+•Se obtiene una descripción del signiﬁcado de la pertenencia a un conjunto. 
+•Se expresa el signiﬁcado a través del mecanismo de inferencia.!17
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.El lenguaje de esquema RDF•RDFS “extiende” RDF al introducir un conjunto de recursos distinguibles en el lenguaje. 
+•Esto es similar a la forma en que se puede extender un lenguaje de programación tradicional deﬁniendo nuevas palabras clave deﬁnidas por el lenguaje.
+•Pero con una diferencia importante: 
+•En RDF existe la capacidad de usar cualquier recurso en cualquier tripla (Cualquiera puede decir cualquier cosa sobre cualquier tema). 
+•Al identiﬁcar ciertos recursos especíﬁcos como “palabras clave nuevas”, no se ha ampliado el lenguaje, simplemente se ha identiﬁcado ciertas triplas que tienen un signiﬁcado especial estandarizado.
+•¿Cómo podemos deﬁnir el “signiﬁcado” de un recurso? En RDFS, el signiﬁcado se expresa al especiﬁcar las inferencias que se pueden extraer cuando el recurso se usa de cierta manera.!18
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Inferencia en RDF
+!19
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.
+subclassOfInferencia en RDF•Supongamos que accede a la página Web de un minorista de ropa en línea y busca “Gamuza Henley” en la categoría de "Camisas". 
+•Su búsqueda aparece vacía. 
+•Te sorprende, porque estabas bastante seguro de que viste una Gamuza Henley en el catálogo en papel que llegó a tu buzón de correo. 
+•Así que busca el número de unidad en el catálogo y hace otra búsqueda usando este número. 
+•Efectivamente, está la Gamuza Henley. Además, encuentra que “Henleys” se muestra en el catálogo como una especie de “Camisas”. 
+•Usted murmura para sí mismo. “Si aparece bajo 'Henleys', debería aparecer debajo de “Camisas”. ¿Cuál es el problema?"!20
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Inferencia en RDF•¿Qué esperamos de una búsqueda como esta? 
+•Queremos que cualquier búsqueda, consulta u otro acceso a los datos que hagan referencia a “Camisas” también miren en “Henleys”. 
+•¿Qué tiene de especial la relación entre “Camisas” y “Henleys”? 
+•Cuando decimos: “Henleys es una especie de ‘Camisas’” esperamos que si buscamos en “Camisas” también buscamos en “Henleys”
+•¿Cómo podemos expresar este signiﬁcado de una manera coherente y sostenible?!21
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Inferencia en RDF•Una solución a este problema es aprovechar el poder de la consulta. 
+•Después de todo, en las aplicaciones de bases de datos convencionales, es en la consulta donde se elaboran las relaciones entre los elementos de datos.
+!22
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.
+Inferencia en RDF•Además del poder de la consulta, la Web Semántica también proporciona un modelo de expresión de datos que permite la representación explícita de la relación entre varios elementos de datos. 
+•En este sentido, realmente permite que un modelador de datos cree datos que estén más conectados, mejor integrados y en los que las restricciones de coherencia en los datos puedan expresarse en los datos mismos. 
+•Los datos pueden describir algo sobre la forma en que deberían usarse.!23
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Inferencia en RDF•La arquitectura de la Web Semántica incluye una serie de capas en la parte superior de la capa de RDF para describir las restricciones de consistencia en los datos. 
+•La clave de estos niveles es la noción de inferencia. 
+•En el contexto de la Web Semántica, la inferencia simplemente signiﬁca que, dada determinada información, podemos determinar otra información relacionada que también podemos considerar como si hubiera sido establecida.!24
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Inferencia en RDF•En el ejemplo de Henleys / Camisas, inferiríamos que cualquier miembro de la clase “Henleys” también es miembro de la clase “Camisas”. 
+•La inferencia es un mecanismo poderoso para tratar la información, y puede abarcar una amplia gama de elaborados procesos. 
+•Con el ﬁn de hacer que nuestros datos sean más integrados y consistentes, las inferencias muy simples a menudo son más útiles que las elaboradas.!25
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Inferencia en RDF•Para hacer que nuestros datos parezcan más conectados y consistentemente integrados, debemos ser capaces de agregar relaciones en los datos.
+•Estas relaciones restringirán la forma en que se ven los datos. 
+•Queremos poder expresar la relación entre “Henleys” y “Camisas” que nos dirá que cualquier artículo en la categoría “Henleys” también debería estar en la categoría “Camisas”.
+•Queremos expresar el hecho que si una cadena de hoteles tiene un hotel en un lugar determinado, entonces en dicho lugar existen servicios de la cadena de hotel.
+•Queremos expresar la lista de planetas en términos de las clasiﬁcaciones de los diversos cuerpos en el sistema solar.!26
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Inferencia en RDF•Muchas de estas relaciones son familiares para los modeladores de información en muchos paradigmas. 
+•Para nuestro ejemplo la relación entre “Henleys” y “Camisas”. 
+•Los escritores de tesauros están familiarizados con la noción de término más amplio. “Camisas” es un término más amplio que “Henleys”.
+• Los programadores orientados a objetos están acostumbrados a la noción de subclases o extensiones de clase. “Henleys” es una subclase de, o se extiende, la clase “Camisas”. 
+•En el lenguaje de esquema RDF , es dice que, “Henleys” subClassOf “Camisas”. !27
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Inferencia en RDF•La infraestructura de la Web Semántica proporciona una especiﬁcación formal y elegante del signiﬁcado de varios términos como subClassOf. 
+•Por ejemplo, el signiﬁcado de “B es una SubClassOf C” es :
+•“Cada miembro de la clase B también es miembro de la clase C”. 
+•Esta especiﬁcación se expresa en la forma de una inferencia. 
+•A partir de la información “x es miembro de B”, uno puede obtener la nueva información, “x es miembro de C”.!28
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.
+Inferencia en RDF•En lenguaje simple, se dice que si una clase A es una subclase de otra clase B, cualquier cosa de tipo A también es de tipo B. 
+•Esta declaración simple es la deﬁnición completa del signiﬁcado de subClassOf en el lenguaje de esquema RDF . 
+•En RDF se reﬁere a esta regla como la regla de propagación de tipo. 
+•Esta interpretación muy simple de la relación de subclase lo convierte en un caballo de batalla para el modelado RDFS. 
+•Se corresponde estrechamente con el constructo SI / ENTONCES de los lenguajes de programación: 
+•SI algo es un miembro de la subclase, ENTONCES es un miembro de la superclase.!29
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.
+Inferencia en RDF
+!30
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.

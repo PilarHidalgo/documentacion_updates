@@ -1,0 +1,92 @@
+Ingeniería y Gestión del Conocimiento RDFSProfesor 
+Andrés Melgar
+!1Agenda•Inferencia en RDF (subPropertyOf).
+•Dominio y rango.
+•Unión de conjuntos.
+•Intersección de conjuntos.
+!2Texto guía
+!3 Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.
+Inferencia en RDF
+!4
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.subPropertyOf
+Inferencia en RDF•La intuición básica detrás del uso de rdfs:subPropertyOf es que una terminología incluye tanto verbos como sustantivos, y que muchos de los mismos requisitos para mapear sustantivos de una fuente a otra se aplicarán a las relaciones. 
+•Los ejemplos simples abundan en el lenguaje ordinario. 
+•La relación hermano (brother) es más especíﬁca que la relación pariente (sibling); si alguien es mi hermano (brother), entonces él también es mi pariente (sibling). 
+•Esto se formaliza en RDFS con rdfs:subPropertyOf.!5
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.
+Inferencia en RDF•Una gran empresa involucra a varias personas en diversas capacidades y tiene una variedad de formas de administrar estas relaciones. 
+•Algunas personas son empleadas directamente por la empresa, mientras que otras son contratistas.
+• Entre estos contratistas, 
+•algunos de ellos están directamente contratados por la empresa como freelance, 
+•otros tienen un contrato a largo plazo y a través de una empresa intermedia. 
+•Se podría decir que todas estas personas trabajan para la empresa.!6
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Inferencia en RDF•¿Cómo se puede modelar esta situación en RDFS? 
+•En primer lugar, se debe considerar las inferencias que deseamos extraer y en qué circunstancias. 
+•Hay una serie de relaciones que pueden sostenerse entre una persona y la empresa:
+•contractTo
+•freeLancesTo 
+•indirectlyContractsTo
+•isEmployedBy 
+•worksFor.!7
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Inferencia en RDF•Si aﬁrmamos alguna de estas declaraciones sobre alguna persona, entonces podremos inferir que esa persona trabaja (workFor) para la empresa. 
+•Además, hay conclusiones intermedias que podemos extraer, por ejemplo: 
+•Tanto un profesional freeLance como un contratista indirecto contratan (contractsTo) con la empresa y, de hecho, trabajan (worksFor) para la empresa.!8
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Inferencia en RDF
+!9
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.
+Inferencia en RDF•Dado los siguientes datos
+•Se puede inferir que:
+!10
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.
+Inferencia en RDF•En general, rdfs:subPropertyOf permite a un modelador describir una jerarquía de propiedades relacionadas. 
+•Al igual que en las jerarquías de clase, las propiedades especíﬁcas se encuentran en la parte inferior del árbol, y las propiedades más generales están más arriba en el árbol. 
+•Cada vez que una propiedad en el árbol se mantiene entre dos entidades, también lo hace cada propiedad encima de ella.!11
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Dominio y rango•Se ha visto cómo las inferencias alrededor de rdfs:subPropertyOf se puede utilizar para describir cómo dos propiedades se relacionan entre sí. 
+•Pero cuando se describe el uso de términos en los datos, también nos gusta representar cómo se usa una propiedad en relación con las clases deﬁnidas. 
+•En particular, podríamos decir que: 
+•cuando se usa una propiedad, el sujeto de la tripla proviene de (es decir, tiene rdf:type) una cierta clase y 
+•que el objeto proviene de algún otro tipo. 
+•Estas dos estipulaciones se expresan en RDFS con los recursos (palabras clave) rdfs:domain y rdfs:range, respectivamente.!12
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Dominio y rango•En matemáticas, las palabras dominio y rango se usan para referirse a cómo se puede usar una función (o más generalmente, una relación). 
+•El dominio de una función es el conjunto de valores para el que está deﬁnido.
+•El rango es el conjunto de valores que puede tomar. 
+•Por ejemplo, la relación raíz cuadrada:
+• tiene los números positivos como el dominio (ya que los números negativos no tienen raíces cuadradas en los reales), 
+•y los números positivos como el rango.!13
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.
+Dominio y rango•En RDFS, las propiedades rdfs:domain y rdfs:range tienen signiﬁcados inspirados en los usos matemáticos de estas palabras. 
+•Una propiedad p puede tener un rdfs:domain y un rdfs:range. 
+•Estos se especiﬁcan, como todo en RDF , a través de triplas:
+!14
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.
+Dominio y rango•En RDFS, el dominio y rango proporcionan cierta información sobre cómo se usará la propiedad P; 
+•dominio se reﬁere al sujeto de cualquier tripleta que usa P como su predicado, 
+•rango se reﬁere al objeto de dicha tripleta. 
+•Cuando aﬁrmamos que la propiedad P tiene un dominio D (respectivamente, rango R), estamos diciendo que siempre que usemos la propiedad P , podemos inferir que el sujeto (respectivamente objeto) de esta tripla es un miembro de la clase D (respectivamente R ) 
+•En resumen, el dominio y el rango nos dicen cómo se usará P . 
+•En lugar de señalar un error si P se utiliza de una manera aparentemente inconsistente con esta declaración, RDFS deducirá la información de tipo necesaria para que P cumpla con sus declaraciones de dominio y rango.!15
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.Inferencia en RDF
+!16
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.
+Inferencia en RDF
+!17
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.
+Se inﬁere
+Intersección de conjuntos
+!18
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.
+Unión de conjuntos
+!19
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.
+Inferencia en conjuntos•Dado los siguientes datos:
+•Se inﬁere que:
+!20
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.
+Inferencia en propiedades•Dado los siguientes datos:
+•Se inﬁere que:
+!21
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.
+Inferencia en conjuntos•Dado los siguientes datos:
+•Se inﬁere que:
+!22
+ Allemang, D., & Hendler, J. (2011). Semantic web for the working ontologist: effective modeling in RDFS and OWL (2nd edition). Massachusetts: Elsevier. Capítulo 7. RDF schema.
