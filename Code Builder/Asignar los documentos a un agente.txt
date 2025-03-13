@@ -1,0 +1,6 @@
+Paso 1: Configurar el entorno
+- Asegúrate de tener una cuenta y una API key para CodeGPT.
+- Instala las bibliotecas necesarias: `pip install requests`.
+
+Paso 2: Obtener la lista de documentos y agentes
+- Usa el siguiente código para obtener la lista de documentos y agentes disponibles:

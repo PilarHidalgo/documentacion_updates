@@ -1,0 +1,9 @@
+Paso 1: Configurar el entorno
+- Asegúrate de tener una cuenta y una API key para CodeGPT.
+- Instala las bibliotecas necesarias: `pip install requests`.
+
+Paso 2: Preparar los documentos
+- Asegúrate de que los documentos de texto plano estén listos y organizados en un directorio.
+
+Paso 3: Definir la función para cargar documentos a CodeGPT
+- Usa el siguiente código para cargar los documentos a la API de CodeGPT:

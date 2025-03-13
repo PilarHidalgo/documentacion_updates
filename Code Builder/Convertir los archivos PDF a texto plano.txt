@@ -1,0 +1,5 @@
+Paso 1: Instalar las bibliotecas necesarias
+- Instala la biblioteca `PyMuPDF` para manipular archivos PDF: `pip install PyMuPDF`.
+
+Paso 2: Convertir archivos PDF a texto plano
+- Usa el siguiente código para convertir un archivo PDF a texto plano:

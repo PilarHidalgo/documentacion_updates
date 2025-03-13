@@ -1,0 +1,8 @@
+Paso 1: Autenticación con Google Drive
+- Configura el proyecto en Google Cloud Console.
+- Habilita la API de Google Drive.
+- Crea credenciales OAuth 2.0 y descarga el archivo JSON de credenciales.
+- Instala la biblioteca cliente de Google para Python: `pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib`.
+
+Paso 2: Autenticación y autorización
+- Usa el siguiente código para autenticarse y autorizar el acceso a Google Drive:
